@@ -319,6 +319,12 @@ if(CMake_RUN_IWYU)
 endif()
 
 
+# --------------------
+# OTHER OPTS
+option(BUILD_TESTS "bool" OFF)
+
+
+
 #-----------------------------------------------------------------------
 # a macro that only sets the FOLDER target property if it's
 # "appropriate"
@@ -835,7 +841,9 @@ if(NOT CMake_TEST_EXTERNAL_CMAKE)
   add_subdirectory(Utilities)
 endif()
 
-add_subdirectory(Tests)
+if(BUILD_TESTS)
+  add_subdirectory(Tests)
+endif(BUILD_TESTS)
 
 if(NOT CMake_TEST_EXTERNAL_CMAKE)
   if(BUILD_TESTING)
