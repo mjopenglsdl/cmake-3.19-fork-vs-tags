@@ -350,6 +350,11 @@ bool cmGlobalVisualStudio8Generator::NeedLinkLibraryDependencies(
       }
     }
   }
+
+  if(target->GetProperty("VS_LINK_LIBRARY_DEPENDENCIES")){
+    return true;
+  }
+  
   return false;
 }
 

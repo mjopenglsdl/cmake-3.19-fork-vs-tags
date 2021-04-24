@@ -148,6 +148,9 @@ public:
   cmIDEFlagTable const* GetMasmFlagTable() const;
   cmIDEFlagTable const* GetNasmFlagTable() const;
 
+  // extra added
+  bool UseLibDepencyInputs(cmGeneratorTarget*);
+
 protected:
   cmGlobalVisualStudio10Generator(cmake* cm, const std::string& name,
                                   std::string const& platformInGeneratorName);

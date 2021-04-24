@@ -130,3 +130,14 @@ Contributing
 See `CONTRIBUTING.rst`_ for instructions to contribute.
 
 .. _`CONTRIBUTING.rst`: CONTRIBUTING.rst
+
+
+
+
+Extra MSVC tags added
+=========================
+
+target_properties:
+
+1. <LinkLibraryDependencies>: VS_LINK_LIBRARY_DEPENDENCIES
+2. <UseLibraryDependencyInputs>: VS_USE_LIBRARY_DEPENDENCY

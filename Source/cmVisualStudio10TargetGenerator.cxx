@@ -3923,10 +3923,15 @@ void cmVisualStudio10TargetGenerator::WriteLinkOptions(
     linkOptions.OutputFlagMap();
   }
 
+  Elem e2(e1, "ProjectReference");
+
   if (!this->GlobalGenerator->NeedLinkLibraryDependencies(
-        this->GeneratorTarget)) {
-    Elem e2(e1, "ProjectReference");
+        this->GeneratorTarget)) {  
     e2.Element("LinkLibraryDependencies", "false");
+  }
+
+  if (this->GlobalGenerator->UseLibDepencyInputs(this->GeneratorTarget)) {
+    e2.Element("UseLibraryDependencyInputs", "true");
   }
 }
 

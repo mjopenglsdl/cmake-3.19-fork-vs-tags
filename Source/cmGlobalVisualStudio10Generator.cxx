@@ -1005,6 +1005,7 @@ bool cmGlobalVisualStudio10Generator::FindVCTargetsPath(cmMakefile* mf)
   std::string out;
   int ret = 0;
   cmsys::RegularExpression regex("\n *VCTargetsPath=([^%\r\n]+)[\r\n]");
+
   if (!cmSystemTools::RunSingleCommand(cmd, &out, &out, &ret, wd.c_str(),
                                        cmSystemTools::OUTPUT_NONE) ||
       ret != 0 || !regex.find(out)) {
@@ -1021,10 +1022,13 @@ bool cmGlobalVisualStudio10Generator::FindVCTargetsPath(cmMakefile* mf)
     if (ret != 0) {
       e << "Exit code: " << ret << "\n";
     }
+
     mf->IssueMessage(MessageType::FATAL_ERROR, e.str());
     cmSystemTools::SetFatalErrorOccured();
+
     return false;
   }
+
   this->VCTargetsPath = regex.match(1);
   cmSystemTools::ConvertToUnixSlashes(this->VCTargetsPath);
 
@@ -1491,4 +1495,15 @@ cmIDEFlagTable const* cmGlobalVisualStudio10Generator::GetNasmFlagTable() const
   std::string defaultName = this->ToolsetOptions.GetToolsetName(
     this->GetPlatformName(), this->DefaultNasmFlagTableName);
   return LoadFlagTable("", toolsetName, defaultName, "NASM");
+}
+
+
+
+bool cmGlobalVisualStudio10Generator::UseLibDepencyInputs(cmGeneratorTarget* target)
+{
+  if(target->GetProperty("VS_USE_LIBRARY_DEPENDENCY")){
+    return true;
+  }
+
+  return false;
 }
