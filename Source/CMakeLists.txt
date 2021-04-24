@@ -853,12 +853,12 @@ set(SRCS ${SRCS}
 # Temporary variable for tools targets
 set(_tools)
 
-if(WIN32 AND NOT CYGWIN)
-  set_source_files_properties(cmcldeps.cxx PROPERTIES COMPILE_DEFINITIONS _WIN32_WINNT=0x0501)
-  add_executable(cmcldeps cmcldeps.cxx ${MANIFEST_FILE})
-  list(APPEND _tools cmcldeps)
-  target_link_libraries(cmcldeps CMakeLib)
-endif()
+# if(WIN32 AND NOT CYGWIN)
+#   set_source_files_properties(cmcldeps.cxx PROPERTIES COMPILE_DEFINITIONS _WIN32_WINNT=0x0501)
+#   add_executable(cmcldeps cmcldeps.cxx ${MANIFEST_FILE})
+#   list(APPEND _tools cmcldeps)
+#   target_link_libraries(cmcldeps CMakeLib)
+# endif()
 
 foreach(v CURL_CA_BUNDLE CURL_CA_PATH)
   if(${v})
@@ -994,8 +994,8 @@ set(CTEST_SRCS cmCTest.cxx
   )
 
 # Build CTestLib
-add_library(CTestLib ${CTEST_SRCS})
-target_link_libraries(CTestLib CMakeLib ${CMAKE_CURL_LIBRARIES})
+# add_library(CTestLib ${CTEST_SRCS})
+# target_link_libraries(CTestLib CMakeLib ${CMAKE_CURL_LIBRARIES})
 
 #
 # CPack
@@ -1116,8 +1116,8 @@ if(APPLE)
 endif()
 
 # Build CPackLib
-add_library(CPackLib ${CPACK_SRCS})
-target_link_libraries(CPackLib CMakeLib)
+# add_library(CPackLib ${CPACK_SRCS})
+# target_link_libraries(CPackLib CMakeLib)
 if(APPLE)
   # Some compilers produce errors in the CoreServices framework headers.
   # Ideally such errors should be fixed by either the compiler vendor
@@ -1172,14 +1172,14 @@ target_link_libraries(CMakeServerLib CMakeLib)
 target_link_libraries(cmake CMakeServerLib)
 
 # Build CTest executable
-add_executable(ctest ctest.cxx ${MANIFEST_FILE})
-list(APPEND _tools ctest)
-target_link_libraries(ctest CTestLib)
+# add_executable(ctest ctest.cxx ${MANIFEST_FILE})
+# list(APPEND _tools ctest)
+# target_link_libraries(ctest CTestLib)
 
 # Build CPack executable
-add_executable(cpack CPack/cpack.cxx ${MANIFEST_FILE})
-list(APPEND _tools cpack)
-target_link_libraries(cpack CPackLib)
+# add_executable(cpack CPack/cpack.cxx ${MANIFEST_FILE})
+# list(APPEND _tools cpack)
+# target_link_libraries(cpack CPackLib)
 
 # Curses GUI
 if(BUILD_CursesDialog)

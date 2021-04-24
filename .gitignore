@@ -1,7 +1,15 @@
 
 # dir
 .vscode
+.vs
 
 tmp
 
+
+out
+
 build/*
+build-*
+
+
+test
